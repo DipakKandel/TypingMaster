@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Master</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <!-- <h1>This is test</h1> -->
+    
+    <div class="container" id="container">
+        <div class="timer" id="timer">10</div>
+        <div class="displayArea" id="paragraph"></div>
+        <textarea class="inputArea" onpaste="return false;" id="inputArea" ></textarea>
+        <div class="result" id="result">
+            <div class="wpm" id="wpm">Total Entered : <span id="wpmcount">0</span> characters</div>
+            <div class="accuracy" id="accuracy">Mistakes : <span id="accuracyCount">0</span></div>
+            <button onclick="newParagraph();" id='restart'class="restart">Restart</div>
+        </div>
+    </div><br><br>
+    <div class="features">
+        <B>Features of the program</B>
+    </div>
+</body>
+<script src="index.js"></script>
+</html>

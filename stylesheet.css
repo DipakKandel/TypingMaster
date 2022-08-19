@@ -1,0 +1,91 @@
+body{
+    min-height: 100vh;
+    /* display: flex; */
+    padding: auto;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    background-color: rgb(213, 224, 192);
+}
+.timer{
+    /* position: absolute; */
+    top: 2.5vh;
+    font-size: 3rem;
+    font-weight: bold;
+    color: rgb(14, 59, 126);
+    font-family: monospace;
+    text-align: center;
+}
+.container{
+    margin:auto;
+    /* margin-top: ; */
+    border: 3px solid green;
+    border-radius: 2rem;
+    padding: 2vh;
+    width: 70vw;
+    max-width: 850px;
+    height: fit-content;
+} 
+.displayArea{
+    color:rgb(18, 94, 117);
+    margin: 10px;
+    border: 2px solid rgb(75, 57, 57);
+    border-radius: 10px;
+    text-align: left;
+    height: fit-content;
+    width: 96%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 4px;
+    background-color: rgb(229, 235, 223);
+    /* display: flex; */
+    align-items: center;
+}  
+
+.inputArea{
+    text-align: left;
+    margin:10px;
+    border: 2px solid black;  
+    border-radius: 10px;  
+    width: 96%;
+    /* min-height:33%; */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    font-weight: 600;
+    resize: none;
+    padding: 4px;
+}
+.result{
+    font-family: fantasy; 
+    display: flex;
+    justify-content: space-around;
+}
+.wpm {
+    display: inline;
+}
+.accurancy{
+    display: inline;
+}
+.restart{
+    border: 2px solid rgb(32, 8, 8);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1em;
+    background-color: #4CAF50;
+    color: whitesmoke;
+    border-radius: 8px;
+    text-shadow: 0 1px 0 rgba(165, 69, 69, 0.2);
+    font-weight: 500;
+    /* margin-left: 3rem; */
+}
+.correct{
+    color: rgb(15, 167, 28);
+}
+.incorrect{
+    color: red;
+    text-decoration: underline;
+    
+}
+.features{
+    text-align: center;
+}
