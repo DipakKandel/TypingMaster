@@ -45,6 +45,7 @@ let correctCharacters = 0;
 let mistakes = 0;
 let totalErrors = 0;
 let wpm = 0;
+let accuracy = 0;
 // let characterTyped = 0;
 
 function processCurrentText() {
@@ -93,16 +94,23 @@ mistakesID.innerHTML = totalErrors + mistakes;
 
 }
 function newParagraph() {
+  
   mistakes = 0;
+  accuracyID.innerHTML = accuracy;
+
   typingAreaID.disabled = false;
   typingAreaID.value = "";
   speedID.innerHTML = 0;
+  wpmValueID.innerHTML = 0;
   executed = false;
   mistakesID.innerHTML = 0;
   timerID.innerHTML = 60;
   totalCharacters = 0;
-  let wpm = 0;
-
+  // let wpm = 0;
+  if (timer){
+    clearTimeout(timer)
+    seconds = 10;
+  }
   // mistakes = 0;
   let content = paragraphs[Math.floor(Math.random() * paragraphs.length)]
   paragraphID.innerText = '';
@@ -124,13 +132,13 @@ function newParagraph() {
 newParagraph()
 
 function countdown() {
-  var seconds = 60;
+  var seconds = 10;
   function tick() {
     seconds--;
     timerID.innerHTML =
       (seconds < 10 ? "0" : "") + String(seconds);
     if (seconds > 0) {
-      setTimeout(tick, 1000);
+       timer = setTimeout(tick, 1000);
 
     }
 
@@ -141,6 +149,7 @@ function countdown() {
       correctCharacters = totalCharacters - mistakes;
       wpm = (correctCharacters/5)/1 ;
       wpmValueID.innerHTML = wpm;
+      timerID.innerHTML = 60;
 
       errorRate = Math.floor(((totalCharacters-correctCharacters)/ totalCharacters)*100);
       let accuracy = 100-errorRate;
@@ -152,14 +161,14 @@ function countdown() {
   }
   tick();
 }
-function enterKeyPressed(event) {
-  if (event.keyCode == 13) {
-     console.log("Enter key is pressed");
-     return true;
-  } else {
-     return false;
-  }
-}
+// function enterKeyPressed(event) {
+//   if (event.keyCode == 13) {
+//      console.log("Enter key is pressed");
+//      return true;
+//   } else {
+//      return false;
+//   }
+// }
 // correctCharacters = document.querySelectorAll('correct').length;
 // accuracyID.innerHTML = correctCharacters;
 
