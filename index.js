@@ -34,28 +34,39 @@ const paragraphID = document.getElementById('paragraph');
 const typingAreaID = document.getElementById('inputArea');
 const containerID = document.getElementById('container');
 const timerID = document.getElementById('timer');
-let executed = false;
 const speedID = document.getElementById('wpmcount')
 const accuracyID = document.getElementById('accuracyCount');
+const mistakesID = document.getElementById('mistakesCount');
+const wpmValueID = document.getElementById('wpmValue');
+let executed = false;
 
 let totalCharacters = 0;
 let correctCharacters = 0;
 let mistakes = 0;
+let totalErrors = 0;
+let wpm = 0;
+// let characterTyped = 0;
 
-typingAreaID.addEventListener('input', () => {
+function processCurrentText() {
+
+
+  const arrayInputValue = typingAreaID.value.split("")
 
   if (!executed) {
     countdown()
     executed = true;
   }
+//  characterTyped++;
+ mistakes = 0
 
 
 
   const arrayPara = paragraphID.querySelectorAll('span')
-  const arrayInputValue = typingAreaID.value.split('')
   arrayPara.forEach((characterSpan, index) => {
-    const enteredCharacter = arrayInputValue[index]
+    const enteredCharacter = arrayInputValue[index];
+
     totalCharacters = arrayInputValue.length;
+
     if (enteredCharacter == null) {
       // console.log('null')
       characterSpan.classList.remove('correct')
@@ -71,26 +82,28 @@ typingAreaID.addEventListener('input', () => {
       
       characterSpan.classList.add('incorrect')
       characterSpan.classList.remove('correct')
-
-      
+      mistakes ++;
     }
 
-
+  
   })
 // if (arrayPara)
+// speedID.innerHTML = characterTyped;
+mistakesID.innerHTML = totalErrors + mistakes;
 
-
-})
+}
 function newParagraph() {
   mistakes = 0;
   typingAreaID.disabled = false;
   typingAreaID.value = "";
   speedID.innerHTML = 0;
   executed = false;
-  accuracyID.innerHTML = 0;
-  timerID.innerHTML = 10;
+  mistakesID.innerHTML = 0;
+  timerID.innerHTML = 60;
+  totalCharacters = 0;
+  let wpm = 0;
 
-  mistakes = 0;
+  // mistakes = 0;
   let content = paragraphs[Math.floor(Math.random() * paragraphs.length)]
   paragraphID.innerText = '';
 
@@ -98,10 +111,7 @@ function newParagraph() {
     const characterSpan = document.createElement('span')
     characterSpan.innerText = character
     paragraphID.appendChild(characterSpan)
-
-
-
-  })
+  });
 
   var paragraphHeight = paragraphID.clientHeight;
   var containerHeight = paragraphHeight * 2.5;
@@ -114,7 +124,7 @@ function newParagraph() {
 newParagraph()
 
 function countdown() {
-  var seconds = 10;
+  var seconds = 60;
   function tick() {
     seconds--;
     timerID.innerHTML =
@@ -123,17 +133,33 @@ function countdown() {
       setTimeout(tick, 1000);
 
     }
-    if (seconds == 0) {
+
+    if (seconds == 0 ) {
       typingAreaID.disabled = true;
       speedID.innerHTML = totalCharacters;
-      accuracyID.innerHTML = mistakes;
+      mistakesID.innerHTML = mistakes; 
+      correctCharacters = totalCharacters - mistakes;
+      wpm = (correctCharacters/5)/1 ;
+      wpmValueID.innerHTML = wpm;
+
+      errorRate = Math.floor(((totalCharacters-correctCharacters)/ totalCharacters)*100);
+      let accuracy = 100-errorRate;
+      accuracyID.innerHTML = accuracy;
+      // mistakes;
 
       // alert('timeout ')
     }
   }
   tick();
 }
-
+function enterKeyPressed(event) {
+  if (event.keyCode == 13) {
+     console.log("Enter key is pressed");
+     return true;
+  } else {
+     return false;
+  }
+}
 // correctCharacters = document.querySelectorAll('correct').length;
 // accuracyID.innerHTML = correctCharacters;
 

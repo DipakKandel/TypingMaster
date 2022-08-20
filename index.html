@@ -11,12 +11,14 @@
     <!-- <h1>This is test</h1> -->
     
     <div class="container" id="container">
-        <div class="timer" id="timer">10</div>
+        <div class="timer" id="timer">60</div>
         <div class="displayArea" id="paragraph"></div>
-        <textarea class="inputArea" onpaste="return false;" id="inputArea" ></textarea>
+        <textarea class="inputArea" oninput="processCurrentText()"  onpaste="return false;" id="inputArea" ></textarea>
         <div class="result" id="result">
             <div class="wpm" id="wpm">Total Entered : <span id="wpmcount">0</span> characters</div>
-            <div class="accuracy" id="accuracy">Mistakes : <span id="accuracyCount">0</span></div>
+            <div class="accuracy" id="mistakes"> Mistakes : <span id="mistakesCount">0</span></div>
+            <div class="accuracy" id="accuracy"> Accuracy : <span id="accuracyCount">0</span> %</div>
+            <div class="wpm" id="wpm"> SPEED : <span id="wpmValue">0</span> WPM</div>
             <button onclick="newParagraph();" id='restart'class="restart">Restart</div>
         </div>
     </div><br><br>
